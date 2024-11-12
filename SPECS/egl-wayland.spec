@@ -1,6 +1,6 @@
 Name:           egl-wayland
 Version:        1.1.9
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Wayland EGL External Platform library
 
 License:        MIT
@@ -71,6 +71,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_datadir}/wayland-eglstream/
 
 %changelog
+* Mon May 13 2024 José Expósito <jexposit@redhat.com> - 1.1.9-3
+- Rebuilt for RHEL-26187
+
 * Tue Jun 28 2022 Olivier Fourdan <ofourdan@redhat.com> - 1.1.9-2
 - Install 15_nvidia_gbm.json
   Resolves: rhbz#2101695
