@@ -1,20 +1,19 @@
 Name:           egl-wayland
-Version:        1.1.9
-Release:        3%{?dist}
+Version:        1.1.13.1
+Release:        1%{?dist}
 Summary:        Wayland EGL External Platform library
-
+# SPDX
 License:        MIT
 URL:            https://github.com/NVIDIA/%{name}
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:        10_nvidia_wayland.json
 Source2:        15_nvidia_gbm.json
-Patch0:         %url/commit/d4937adc5cd04ac7df98fc5616e40319fb52fdee.patch
-Patch1:         %url/commit/daab8546eca8428543a4d958a2c53fc747f70672.patch
-Patch2:         %url/commit/582b2d345abaa0e313cf16c902e602084ea59551.patch
 
 BuildRequires:  meson
 BuildRequires:  libtool
 BuildRequires:  eglexternalplatform-devel
+BuildRequires:  cmake
+BuildRequires:  libdrm-devel
 %if 0%{?fedora}
 BuildRequires:  libglvnd-devel
 %else
@@ -38,14 +37,10 @@ Wayland EGL External Platform library development package
 
 %prep
 %autosetup -p1
-%if 0%{?rhel}
-sed -i -e 's@>= 0.50@>= 0.47@g'  meson.build
-%endif
 
 %build
 %meson
 %meson_build
-
 
 %install
 %meson_install
@@ -71,6 +66,10 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_datadir}/wayland-eglstream/
 
 %changelog
+* Tue Nov 19 2024 José Expósito <jexposit@redhat.com> - 1.1.13.1-1
+- Update to 1.1.13.1
+  Resolves: https://issues.redhat.com/browse/RHEL-68048
+
 * Mon May 13 2024 José Expósito <jexposit@redhat.com> - 1.1.9-3
 - Rebuilt for RHEL-26187
 
