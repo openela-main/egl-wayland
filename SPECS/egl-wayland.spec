@@ -1,6 +1,6 @@
 Name:           egl-wayland
 Version:        1.1.13.1
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Wayland EGL External Platform library
 # SPDX
 License:        MIT
@@ -66,6 +66,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_datadir}/wayland-eglstream/
 
 %changelog
+* Tue Apr 28 2026 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1.13.1-3
+- Bump release
+
 * Tue Nov 19 2024 José Expósito <jexposit@redhat.com> - 1.1.13.1-1
 - Update to 1.1.13.1
   Resolves: https://issues.redhat.com/browse/RHEL-68048
