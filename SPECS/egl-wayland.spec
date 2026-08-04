@@ -1,13 +1,12 @@
 Name:           egl-wayland
 Version:        1.1.13.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Wayland EGL External Platform library
 # SPDX
 License:        MIT
 URL:            https://github.com/NVIDIA/%{name}
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:        10_nvidia_wayland.json
-Source2:        15_nvidia_gbm.json
 
 BuildRequires:  meson
 BuildRequires:  libtool
@@ -45,7 +44,7 @@ Wayland EGL External Platform library development package
 %install
 %meson_install
 install -m 0755 -d %{buildroot}%{_datadir}/egl/egl_external_platform.d/
-install -pm 0644 %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/egl/egl_external_platform.d/
+install -pm 0644 %{SOURCE1} %{buildroot}%{_datadir}/egl/egl_external_platform.d/
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
@@ -57,7 +56,6 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %license COPYING
 %{_libdir}/*.so.*
 %{_datadir}/egl/egl_external_platform.d/10_nvidia_wayland.json
-%{_datadir}/egl/egl_external_platform.d/15_nvidia_gbm.json
 
 %files devel
 %{_libdir}/libnvidia-egl-wayland.so
@@ -66,6 +64,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_datadir}/wayland-eglstream/
 
 %changelog
+* Tue Jul 21 2026 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1.13.1-4
+- Don't install 15_nvidia_gbm.json
+
 * Tue Apr 28 2026 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1.13.1-3
 - Bump release
 
